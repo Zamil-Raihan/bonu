@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Bonu Me?</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: #000;
+            color: #eee;
+            text-align: center;
+            font-family: "Lora", serif;
+            height: 100vh;
+            margin: 0;
+            margin-top: 1in; /* Adds 1 inch margin from the top */
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            overflow: hidden;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        .btn-container {
+            position: relative;
+            width: 300px;
+            display: flex;
+            justify-content: space-between;
+        }
+        button {
+            font-family: "Lora", serif;
+            font-weight: bold; /* Make buttons bold */
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 10px 20px;
+            background: #eee;
+            color: #777;
+            width: 90px;
+            height: 60px;
+            transition: 400ms background, color, transform;
+            position: relative;
+        }
+        button:hover {
+            cursor: pointer;
+            background-color: #888;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <!-- GIF before the question -->
+    <img src="plz.gif" width="320px" alt="Please GIF">
+    <h1>Mou...Will You Bonu Me?</h1>
+    <div class="btn-container">
+        <button id="yesbtn" onclick="window.location.href='yes.html'">Yes ❤️</button>
+        <button id="nobtn" onmousemove="moveButton(this)" onclick="alert('You\'re quick and cruel, did you cheat? 😢')">No 💔</button>
+    </div>
+
+    <script>
+        const WIDTH = window.innerWidth;
+        const HEIGHT = window.innerHeight;
+        const BTN_H_MAR = 60;
+        const BTN_W_MAR = 90;
+        const MOVEMENT_RANGE = 250; // 400px range for "No" button
+
+        function moveButton(nobtn) {
+            nobtn.style.position = "absolute";
+            let randomH = Math.random() * (MOVEMENT_RANGE - BTN_H_MAR);  // Constrained to 400px height range
+            let randomW = Math.random() * (MOVEMENT_RANGE - BTN_W_MAR);  // Constrained to 400px width range
+            randomW = adjustW(randomW);
+            randomH = adjustH(randomH);
+            nobtn.style.top = `${randomH}px`;
+            nobtn.style.left = `${randomW}px`;
+        }
+
+        function adjustW(rW) {
+            if (rW <= 10) rW = 10;
+            else if (rW >= MOVEMENT_RANGE - BTN_W_MAR) rW = MOVEMENT_RANGE - BTN_W_MAR;
+            return rW;
+        }
+
+        function adjustH(rH) {
+            if (rH <= 10) rH = 10;
+            else if (rH >= MOVEMENT_RANGE - BTN_H_MAR) rH = MOVEMENT_RANGE - BTN_H_MAR;
+            return rH;
+        }
+    </script>
+</body>
+</html>
